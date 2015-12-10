@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="http://oracc.org/wsdl/ows.wsdl"
+  xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+  xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xop="http://www.w3.org/2004/08/xop/include"
+  xmlns:xmime5="http://www.w3.org/2005/05/xmlmime"
+  xmlns:osc-data="http://oracc.org/wsdl/ows.xsd"
+  xmlns:osc-meth="http://oracc.org/wsdl/ows.wsdl"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://www.w3.org/2003/05/soap-envelope"/>
+  <import namespace="http://www.w3.org/2003/05/soap-encoding"/>
+  <import namespace="http://www.w3.org/2004/08/xop/include" schemaLocation="http://www.w3.org/2004/08/xop/include"/>
+  <import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+  <import namespace="http://oracc.org/wsdl/ows.xsd"/>
+
+  <!-- operation request element -->
+  <element name="PutData">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:data" minOccurs="0" maxOccurs="1"/><!-- osc_meth__PutData::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="PutDataResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__PutDataResponse::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="GetData">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__GetData::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="GetDataResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__GetDataResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="Request">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Request::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Request::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="RequestResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__RequestResponse::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__RequestResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="Response">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Response::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="ResponseResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__ResponseResponse::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__ResponseResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+

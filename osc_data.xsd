@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="http://oracc.org/wsdl/ows.xsd"
+  xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+  xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xop="http://www.w3.org/2004/08/xop/include"
+  xmlns:xmime5="http://www.w3.org/2005/05/xmlmime"
+  xmlns:osc-data="http://oracc.org/wsdl/ows.xsd"
+  xmlns:osc-meth="http://oracc.org/wsdl/ows.wsdl"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://www.w3.org/2003/05/soap-envelope"/>
+  <import namespace="http://www.w3.org/2003/05/soap-encoding"/>
+  <import namespace="http://www.w3.org/2004/08/xop/include" schemaLocation="http://www.w3.org/2004/08/xop/include"/>
+  <import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+  <import namespace="http://oracc.org/wsdl/ows.wsdl"/>
+
+  <complexType name="Data">
+   <annotation>
+    <documentation>holds a MIME attachment</documentation>
+   </annotation>
+   <sequence>
+     <element ref="xop:Include" minOccurs="1" maxOccurs="1"/><!-- osc_data__Data::xop__Include -->
+   </sequence>
+     <attribute ref="xmime5:contentType" use="optional"/>
+  </complexType>
+  <complexType name="DataSet">
+   <annotation>
+    <documentation>holds a set of MIME attachments</documentation>
+   </annotation>
+   <sequence>
+     <element name="item" type="osc-data:Data" minOccurs="0" maxOccurs="unbounded"/><!-- osc_data__DataSet::__size -->
+   </sequence>
+  </complexType>
+  <complexType name="Keys">
+   <annotation>
+    <documentation>holds a set of strings to access the data collection at the server side</documentation>
+   </annotation>
+   <sequence>
+     <element name="key" type="xsd:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/><!-- osc_data__Keys::__size -->
+   </sequence>
+  </complexType>
+  <element name="keys" type="osc-data:Keys"/>
+  <element name="data" type="osc-data:DataSet"/>
+ </schema>
+
