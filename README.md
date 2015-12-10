@@ -14,7 +14,7 @@ python client.py wsdl/weather.wsdl
 python client.py wsdl/osc.wsdl
 ```
 
-Each of those python commands will print out the list of available functionality in each server followed but the list of arguments of a randomly chosen method. Execute several times to maximise the fun.
+Each of those python commands will print out the list of available functionality in each server followed by the list of arguments of a randomly chosen method. Execute several times to maximise the fun.
 
 Also takes a URL to another WSDL file as argument.
 
