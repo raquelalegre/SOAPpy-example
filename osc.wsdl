@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="osc"
+ targetNamespace="http://oracc.org/wsdl/ows.wsdl"
+ xmlns:tns="http://oracc.org/wsdl/ows.wsdl"
+ xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+ xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xop="http://www.w3.org/2004/08/xop/include"
+ xmlns:xmime5="http://www.w3.org/2005/05/xmlmime"
+ xmlns:osc-data="http://oracc.org/wsdl/ows.xsd"
+ xmlns:osc-meth="http://oracc.org/wsdl/ows.wsdl"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap12/"
+ xmlns:HTTP="http://schemas.xmlsoap.org/wsdl/http/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="http://oracc.org/wsdl/ows.xsd"
+  xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+  xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xop="http://www.w3.org/2004/08/xop/include"
+  xmlns:xmime5="http://www.w3.org/2005/05/xmlmime"
+  xmlns:osc-data="http://oracc.org/wsdl/ows.xsd"
+  xmlns:osc-meth="http://oracc.org/wsdl/ows.wsdl"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://www.w3.org/2003/05/soap-envelope"/>
+  <import namespace="http://www.w3.org/2003/05/soap-encoding"/>
+  <import namespace="http://www.w3.org/2004/08/xop/include" schemaLocation="http://www.w3.org/2004/08/xop/include"/>
+  <import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+  <import namespace="http://oracc.org/wsdl/ows.wsdl"/>
+
+  <complexType name="Data">
+   <annotation>
+    <documentation>holds a MIME attachment</documentation>
+   </annotation>
+   <sequence>
+     <element ref="xop:Include" minOccurs="1" maxOccurs="1"/><!-- osc_data__Data::xop__Include -->
+   </sequence>
+     <attribute ref="xmime5:contentType" use="optional"/>
+  </complexType>
+  <complexType name="DataSet">
+   <annotation>
+    <documentation>holds a set of MIME attachments</documentation>
+   </annotation>
+   <sequence>
+     <element name="item" type="osc-data:Data" minOccurs="0" maxOccurs="unbounded"/><!-- osc_data__DataSet::__size -->
+   </sequence>
+  </complexType>
+  <complexType name="Keys">
+   <annotation>
+    <documentation>holds a set of strings to access the data collection at the server side</documentation>
+   </annotation>
+   <sequence>
+     <element name="key" type="xsd:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/><!-- osc_data__Keys::__size -->
+   </sequence>
+  </complexType>
+  <element name="keys" type="osc-data:Keys"/>
+  <element name="data" type="osc-data:DataSet"/>
+ </schema>
+
+ <schema targetNamespace="http://oracc.org/wsdl/ows.wsdl"
+  xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+  xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xop="http://www.w3.org/2004/08/xop/include"
+  xmlns:xmime5="http://www.w3.org/2005/05/xmlmime"
+  xmlns:osc-data="http://oracc.org/wsdl/ows.xsd"
+  xmlns:osc-meth="http://oracc.org/wsdl/ows.wsdl"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://www.w3.org/2003/05/soap-envelope"/>
+  <import namespace="http://www.w3.org/2003/05/soap-encoding"/>
+  <import namespace="http://www.w3.org/2004/08/xop/include" schemaLocation="http://www.w3.org/2004/08/xop/include"/>
+  <import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+  <import namespace="http://oracc.org/wsdl/ows.xsd"/>
+
+  <!-- operation request element -->
+  <element name="PutData">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:data" minOccurs="0" maxOccurs="1"/><!-- osc_meth__PutData::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="PutDataResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__PutDataResponse::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="GetData">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__GetData::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="GetDataResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__GetDataResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="Request">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Request::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Request::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="RequestResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__RequestResponse::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__RequestResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="Response">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="0" maxOccurs="1"/><!-- osc_meth__Response::osc_data__keys -->
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="ResponseResponse">
+   <complexType>
+    <sequence>
+     <element ref="osc-data:keys" minOccurs="1" maxOccurs="1"/><!-- osc_meth__ResponseResponse::osc_data__keys -->
+     <element ref="osc-data:data" minOccurs="1" maxOccurs="1"/><!-- osc_meth__ResponseResponse::osc_data__data -->
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+
+</types>
+
+<message name="PutData">
+ <part name="Body" element="osc-meth:PutData"/><!-- osc_meth__PutData::osc_meth__PutData -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="PutDataResponse">
+ <part name="Body" element="osc-meth:PutDataResponse"/><!-- osc_meth__PutData::_param_1 -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="GetData">
+ <part name="Body" element="osc-meth:GetData"/><!-- osc_meth__GetData::osc_meth__GetData -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="GetDataResponse">
+ <part name="Body" element="osc-meth:GetDataResponse"/><!-- osc_meth__GetData::_param_2 -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="Request">
+ <part name="Body" element="osc-meth:Request"/><!-- osc_meth__Request::osc_meth__Request -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="RequestResponse">
+ <part name="Body" element="osc-meth:RequestResponse"/><!-- osc_meth__Request::_param_3 -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="Response">
+ <part name="Body" element="osc-meth:Response"/><!-- osc_meth__Response::osc_meth__Response -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<message name="ResponseResponse">
+ <part name="Body" element="osc-meth:ResponseResponse"/><!-- osc_meth__Response::_param_4 -->
+ <part name="Attachments" type="xsd:base64Binary"/>
+</message>
+
+<portType name="oscPortType">
+ <operation name="PutData">
+  <documentation>stores a data set at the server side and returns a set of unique keys to access that data</documentation>
+  <input message="tns:PutData"/>
+  <output message="tns:PutDataResponse"/>
+ </operation>
+ <operation name="GetData">
+  <documentation>gets a set of data items from the server given a set of keys</documentation>
+  <input message="tns:GetData"/>
+  <output message="tns:GetDataResponse"/>
+ </operation>
+ <operation name="Request">
+  <documentation>makes a request to the server; request and args are in keys, zipfile is in data</documentation>
+  <input message="tns:Request"/>
+  <output message="tns:RequestResponse"/>
+ </operation>
+ <operation name="Response">
+  <documentation>gets a response from the server given a set of keys; the response is a zipfile</documentation>
+  <input message="tns:Response"/>
+  <output message="tns:ResponseResponse"/>
+ </operation>
+</portType>
+
+<binding name="osc" type="tns:oscPortType">
+ <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="PutData">
+  <SOAP:operation/>
+  <input>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </input>
+  <output>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </output>
+ </operation>
+ <operation name="GetData">
+  <SOAP:operation/>
+  <input>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </input>
+  <output>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </output>
+ </operation>
+ <operation name="Request">
+  <SOAP:operation/>
+  <input>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </input>
+  <output>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </output>
+ </operation>
+ <operation name="Response">
+  <SOAP:operation/>
+  <input>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </input>
+  <output>
+   <MIME:multipartRelated>
+    <MIME:part>
+     <SOAP:body parts="Body" use="literal"/>
+    </MIME:part>
+    <MIME:part>
+     <MIME:content part="Attachments" type="*/*"/>
+    </MIME:part>
+   </MIME:multipartRelated>
+  </output>
+ </operation>
+</binding>
+
+<service name="osc">
+ <documentation>gSOAP 2.8.17r generated service definition</documentation>
+ <port name="osc" binding="tns:osc">
+  <SOAP:address location="http://localhost:80"/>
+ </port>
+</service>
+
+</definitions>
