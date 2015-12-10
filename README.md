@@ -1,6 +1,8 @@
 # SOAPpy-example
 
-Playing around with SOAPpy. 
+Playing around with SOAPpy. If you want to run it you probably need to install SOAPpy first, e.g.: `pip install SOAPpy`.
+
+
 
 To run this:
 
