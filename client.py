@@ -2,14 +2,6 @@ import sys, getopt, random
 from sys import argv
 from SOAPpy import WSDL
 
-def getGoogleAPIKey(wsdlFile):
-    # Get Google API key from local secret file
-    # This is needed by all calls to Google
-    api_key = ""
-    with open("api_key.txt", 'r') as secret:
-        api_key = secret.readline().strip()
-    return api_key
-
 def getAvailableMethods(server):
     return server.methods.keys()
 
