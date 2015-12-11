@@ -20,4 +20,4 @@ Also takes a URL to another WSDL file as argument.
 
 Note osc.wsdl doesn't work yet due to "No address binding found in port.", since it assumes I'm running a server in localhost:80 which I'm not. Needs to point to the live ORACC service to work properly.
 
-__Important Note__: SOAPpy is outdated and clumsy and although it works to lists available stuff in a server, it does not work when you try to call the methods in the server. Switching to __[suds](https://fedorahosted.org/suds/wiki/Documentation)__ instead. 
+__Important Note__: SOAPpy is outdated and clumsy and although it works to lists available stuff in a server, it does not work when you try to call the methods in the server. Switching to __[suds](https://fedorahosted.org/suds/wiki/Documentation)__ instead. Working on an example on how to use it [here](https://github.com/raquel-ucl/suds-example).
